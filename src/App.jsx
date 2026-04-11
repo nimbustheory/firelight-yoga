@@ -3,9 +3,9 @@ import {
   Home, Calendar, TrendingUp, Users, CreditCard, CalendarDays,
   Menu, X, Bell, Settings, Shield, ChevronRight, ChevronDown, Clock,
   PartyPopper, ArrowUpRight, ArrowDownRight, Award, DollarSign, LayoutDashboard,
-  UserCheck, Megaphone, LogOut, Plus, Edit3, Send, Check, Search, Copy, Info,
+  UserCheck, Megaphone, LogOut, Send, Check, Search,
   CircleCheck, UserPlus, Heart, Flame, Star, Sun, Moon, Wind, Sparkles,
-  Mountain, Leaf, Music, Gift, Share2, MapPin
+  Mountain, Music, Gift, Share2, MapPin, ExternalLink
 } from "lucide-react";
 import {
   BarChart, Bar, AreaChart, Area, XAxis, YAxis,
@@ -446,7 +446,7 @@ function ReservationModal({ classData, onConfirm, onClose }) {
               <Check size={28} color={T.accent} />
             </div>
             <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, margin: "0 0 6px" }}>{isFull ? "Added to Waitlist" : "You're In!"}</h3>
-            <p style={{ fontSize: 13, color: T.textMuted, margin: 0 }}>See you on the mat 🔥</p>
+            <p style={{ fontSize: 13, color: T.textMuted, margin: 0 }}>See you on the mat.</p>
           </div>
         ) : (
           <>
@@ -754,7 +754,7 @@ function PracticePage() {
                   <BadgeIcon size={22} color={earned ? badge.color : T.textFaint} />
                 </div>
                 <p style={{ fontSize: 13, fontWeight: 700, color: earned ? T.text : T.textFaint, margin: 0 }}>{name}</p>
-                <p style={{ fontSize: 13, color: T.textFaint, margin: "2px 0 0" }}>{earned ? "Earned ✓" : "Keep going"}</p>
+                <p style={{ fontSize: 13, color: T.textFaint, margin: "2px 0 0", display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}>{earned ? <><Check size={12} /> Earned</> : "Keep going"}</p>
               </div>
             );
           })}
@@ -1223,17 +1223,17 @@ const WRAPPER_FEATURES = [
 ];
 
 const WRAPPER_CARDS = [
-  { icon: Shield, title: "Admin Dashboard", body: "Tap the shield icon in the app header to access the full admin suite — analytics, member CRM, scheduling, and broadcast tools." },
-  { icon: Flame, title: "Built for Firelight Yoga", body: "Custom-designed around your brand, class types, teachers, and the community your members already love — your Fire Room and Earth Room sanctuary in North Portland." },
+  { icon: Shield, title: "Admin Dashboard", body: "Tap the shield icon in the app header to access the full admin suite -- analytics, member CRM, scheduling, and broadcast tools." },
+  { icon: Flame, title: "Built for Firelight Yoga", body: "Custom-designed around your brand, class types, teachers, and the community your members already love -- your Fire Room and Earth Room sanctuary in North Portland." },
   { icon: MapPin, title: "Community-First Design", body: "Celebrate milestones, track streaks, share guest passes, and build the kind of studio loyalty that keeps members coming back to the mat." },
 ];
 
-function SalesWrapper({ children }) {
+function DemoWrapper({ children }) {
   return (
     <div style={{ display: "flex", justifyContent: "center", gap: 48, minHeight: "100vh", padding: "20px 32px", background: "#f5f0e8", fontFamily: "'DM Sans', system-ui, sans-serif", alignItems: "center" }}>
       {/* Left Panel */}
       <div className="sales-panel sales-left" style={{ width: 280, flexShrink: 0, paddingTop: 20 }}>
-        <p style={{ fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em", color: T.accent, marginBottom: 28 }}>Prototype Demo</p>
+        <p style={{ fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em", color: T.accent, marginBottom: 28 }}>App Preview</p>
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 36 }}>
           <img src="/images/logo-icon.svg" alt="Firelight Yoga" style={{ width: 48, height: 48, borderRadius: 12 }} />
           <div>
@@ -1252,10 +1252,17 @@ function SalesWrapper({ children }) {
             </div>
           ))}
         </div>
-        <p style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: T.textFaint, marginTop: 48 }}>Built by Nimbus Labs</p>
+        <div style={{ marginTop: 48, display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ fontSize: 13, fontWeight: 600, color: T.textFaint }}>Built by</span>
+          <span style={{ fontSize: 15, fontWeight: 800, letterSpacing: "0.08em", color: T.text }}>LUMI</span>
+          <span style={{ fontSize: 12, color: T.textFaint }}>--</span>
+          <a href="https://lumiclass.app" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, fontWeight: 600, color: T.accent, textDecoration: "none", display: "flex", alignItems: "center", gap: 3 }}>
+            LumiClass.app <ExternalLink size={11} />
+          </a>
+        </div>
       </div>
 
-      {/* Center — the app */}
+      {/* Center -- the app */}
       <div style={{ flexShrink: 0 }}>
         {children}
       </div>
@@ -1269,6 +1276,12 @@ function SalesWrapper({ children }) {
             <p style={{ fontSize: 15, color: T.textMuted, margin: 0, lineHeight: 1.55 }}>{card.body}</p>
           </div>
         ))}
+
+        <div style={{ textAlign: "center", padding: "16px 0 0" }}>
+          <p style={{ fontSize: 12, color: T.textFaint, margin: 0 }}>
+            Powered by <span style={{ fontWeight: 800, letterSpacing: "0.08em", color: T.textMuted }}>LUMI</span>
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -1286,8 +1299,6 @@ export default function App() {
   const [classRegistrations, setClassRegistrations] = useState({});
   const [reservationClass, setReservationClass] = useState(null);
   const [feedCelebrations, setFeedCelebrations] = useState({});
-  const [logoClickCount, setLogoClickCount] = useState(0);
-  const [showAdminToggle, setShowAdminToggle] = useState(false);
 
   const registerForClass = useCallback((classId) => {
     setClassRegistrations(prev => ({ ...prev, [classId]: true }));
@@ -1307,11 +1318,6 @@ export default function App() {
 
   const handleLogoClick = useCallback(() => {
     setPage("home");
-    setLogoClickCount(prev => {
-      const next = prev + 1;
-      if (next >= 5) { setShowAdminToggle(true); return 0; }
-      return next;
-    });
   }, []);
 
   const unreadCount = 2;
@@ -1433,7 +1439,7 @@ export default function App() {
   // ——— CONSUMER LAYOUT ———
   return (
     <AppContext.Provider value={{ page, setPage, classRegistrations, registerForClass, openReservation, feedCelebrations, celebrateFeed }}>
-      <SalesWrapper>
+      <DemoWrapper>
       <div style={{ width: 390, maxWidth: 390, height: "94vh", background: T.bgDim, fontFamily: "'DM Sans', system-ui, sans-serif", position: "relative", borderRadius: 20, overflow: "hidden", boxShadow: "0 8px 60px rgba(0,0,0,.12), 0 2px 12px rgba(0,0,0,.06)", display: "flex", flexDirection: "column" }}>
 
         {/* Header */}
@@ -1515,7 +1521,7 @@ export default function App() {
         {showNotifications && <NotificationsModal onClose={() => setShowNotifications(false)} />}
         {reservationClass && <ReservationModal classData={reservationClass} onConfirm={registerForClass} onClose={() => setReservationClass(null)} />}
       </div>
-      </SalesWrapper>
+      </DemoWrapper>
     </AppContext.Provider>
   );
 }
