@@ -245,7 +245,7 @@ function PageTitle({ title, subtitle }) {
 
 function PageHero({ title, subtitle, image }) {
   return (
-    <div style={{ background: `linear-gradient(to bottom, rgba(42,31,20,0.42), rgba(42,31,20,0.57)), url('${image}') center/cover no-repeat`, padding: "42px 20px 36px", color: "#fff", marginBottom: 16 }}>
+    <div style={{ background: `linear-gradient(to bottom, rgba(42,31,20,0.42), rgba(42,31,20,0.57)), url('${image}') center/cover no-repeat`, padding: "54px 20px 47px", color: "#fff", marginBottom: 16 }}>
       <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 30, color: "#fff", margin: 0, lineHeight: 1.1 }}>{title}</h1>
       {subtitle && <p style={{ fontSize: 15, color: "#c8b8a0", margin: "8px 0 0", lineHeight: 1.4 }}>{subtitle}</p>}
     </div>
@@ -502,7 +502,7 @@ function HomePage() {
         <p style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.18em", color: T.accent, marginBottom: 8 }}>{formatDateLong(today)}</p>
         <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 42, margin: "0 0 4px", lineHeight: 1, letterSpacing: "-0.01em" }}>{STUDIO_CONFIG.heroLine1}</h1>
         <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 42, margin: "0 0 12px", lineHeight: 1, letterSpacing: "-0.01em", color: T.accent }}>{STUDIO_CONFIG.heroLine2}</h1>
-        <p style={{ fontSize: 15, color: "#b8a898", lineHeight: 1.5, maxWidth: 300 }}>{STUDIO_CONFIG.description}</p>
+        <p style={{ fontSize: 15, color: "#b8a898", lineHeight: 1.5, maxWidth: 360 }}>{STUDIO_CONFIG.description}</p>
       </div>
 
       {/* Today's Focus */}
