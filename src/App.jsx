@@ -1230,9 +1230,9 @@ const WRAPPER_CARDS = [
 
 function DemoWrapper({ children }) {
   return (
-    <div style={{ display: "flex", justifyContent: "center", gap: 48, minHeight: "100vh", padding: "20px 32px", background: "#f5f0e8", fontFamily: "'DM Sans', system-ui, sans-serif", alignItems: "center" }}>
+    <div style={{ display: "flex", justifyContent: "center", gap: 48, height: "100vh", padding: "20px 32px", background: "#f5f0e8", fontFamily: "'DM Sans', system-ui, sans-serif", alignItems: "center", overflow: "hidden" }}>
       {/* Left Panel */}
-      <div className="sales-panel sales-left" style={{ width: 280, flexShrink: 0, paddingTop: 20 }}>
+      <div className="sales-panel sales-left" style={{ width: 280, flexShrink: 0, paddingTop: 20, maxHeight: "100vh", overflowY: "auto" }}>
         <p style={{ fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em", color: T.accent, marginBottom: 28 }}>App Preview</p>
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 36 }}>
           <img src="/images/logo-icon.svg" alt="Firelight Yoga" style={{ width: 48, height: 48, borderRadius: 12 }} />
@@ -1268,7 +1268,7 @@ function DemoWrapper({ children }) {
       </div>
 
       {/* Right Panel */}
-      <div className="sales-panel sales-right" style={{ width: 300, flexShrink: 0, paddingTop: 20, display: "flex", flexDirection: "column", gap: 20 }}>
+      <div className="sales-panel sales-right" style={{ width: 300, flexShrink: 0, paddingTop: 20, maxHeight: "100vh", overflowY: "auto", display: "flex", flexDirection: "column", gap: 20 }}>
         {WRAPPER_CARDS.map((card, i) => (
           <div key={i} style={{ background: "#fff", borderRadius: 14, padding: "24px 22px", border: `1px solid ${T.border}` }}>
             <card.icon size={24} color={T.accent} style={{ marginBottom: 14 }} />
