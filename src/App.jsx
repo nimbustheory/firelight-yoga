@@ -245,9 +245,13 @@ function PageTitle({ title, subtitle }) {
 
 function PageHero({ title, subtitle, image }) {
   return (
-    <div style={{ background: `linear-gradient(to bottom, rgba(42,31,20,0.42), rgba(42,31,20,0.57)), url('${image}') center/cover no-repeat`, padding: "54px 20px 47px", color: "#fff", marginBottom: 16 }}>
-      <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 30, color: "#fff", margin: 0, lineHeight: 1.1 }}>{title}</h1>
-      {subtitle && <p style={{ fontSize: 15, color: "#c8b8a0", margin: "8px 0 0", lineHeight: 1.4 }}>{subtitle}</p>}
+    <div style={{ position: "relative", minHeight: 220, overflow: "hidden", display: "flex", alignItems: "flex-end" }}>
+      <div style={{ position: "absolute", inset: 0, backgroundImage: `url('${image}')`, backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(0.95)" }} />
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.01) 50%, rgba(0,0,0,0.12) 100%)" }} />
+      <div style={{ position: "relative", padding: "40px 20px 28px", color: "#fff", width: "100%" }}>
+        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "3.5rem", color: "#fff", margin: 0, lineHeight: 1.02, letterSpacing: "-0.01em", textShadow: "0 2px 12px rgba(0,0,0,0.28)" }}>{title}</h1>
+        {subtitle && <p style={{ fontSize: 15, color: "#f5f5f5", margin: "10px 0 0", lineHeight: 1.4, maxWidth: "85%", textShadow: "0 1px 6px rgba(0,0,0,0.35)" }}>{subtitle}</p>}
+      </div>
     </div>
   );
 }
@@ -346,21 +350,25 @@ function PracticeCardFull({ practice: p, expanded, onToggle }) {
 
 function CTACard() {
   return (
-    <div style={{ background: `linear-gradient(to right, rgba(42,31,20,0.62), rgba(42,31,20,0.49)), url('/images/studio/class-header.jpg') center/cover`, borderRadius: 16, padding: "24px 20px", color: "#fff", position: "relative", overflow: "hidden" }}>
-      <Flame size={28} color={T.accent} style={{ marginBottom: 12 }} />
-      <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, margin: "0 0 6px" }}>30 Days for $59</h3>
-      <p style={{ fontSize: 15, color: "#b8a898", margin: "0 0 16px", lineHeight: 1.5 }}>New to FLY? Unlimited classes for 30 days. Heated and unheated, all styles, all levels.</p>
-      <button style={{ padding: "12px 24px", borderRadius: 8, border: "none", fontSize: 15, fontWeight: 700, cursor: "pointer", fontFamily: "'Playfair Display', serif", letterSpacing: "0.03em", background: T.accent, color: "#fff" }}>
-        Start Your Intro
-      </button>
+    <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", color: "#fff" }}>
+      <div style={{ position: "absolute", inset: 0, backgroundImage: "url('/images/studio/class-header.jpg')", backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(0.95)" }} />
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.01) 50%, rgba(0,0,0,0.12) 100%)" }} />
+      <div style={{ position: "relative", padding: "24px 20px" }}>
+        <Flame size={28} color={T.accent} style={{ marginBottom: 12 }} />
+        <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, margin: "0 0 6px", textShadow: "0 2px 12px rgba(0,0,0,0.28)" }}>30 Days for $59</h3>
+        <p style={{ fontSize: 15, color: "#f5f5f5", margin: "0 0 16px", lineHeight: 1.5, textShadow: "0 1px 6px rgba(0,0,0,0.35)" }}>New to FLY? Unlimited classes for 30 days. Heated and unheated, all styles, all levels.</p>
+        <button style={{ padding: "12px 24px", borderRadius: 8, border: "none", fontSize: 15, fontWeight: 700, cursor: "pointer", fontFamily: "'Playfair Display', serif", letterSpacing: "0.03em", background: T.accent, color: "#fff" }}>
+          Start Your Intro
+        </button>
+      </div>
     </div>
   );
 }
 
 function AdminCard({ title, children }) {
   return (
-    <div style={{ background: "#1f1f18", border: "1px solid #3a3528", borderRadius: 12, padding: 18 }}>
-      <h3 style={{ fontSize: 15, fontWeight: 700, color: "#e8dfd2", margin: "0 0 14px" }}>{title}</h3>
+    <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 12, padding: 18 }}>
+      <h3 style={{ fontSize: 15, fontWeight: 700, color: "#111827", margin: "0 0 14px" }}>{title}</h3>
       {children}
     </div>
   );
@@ -496,13 +504,15 @@ function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <div style={{ background: `linear-gradient(to bottom, rgba(42,31,20,0.53), rgba(42,31,20,0.60)), url('/images/studio/hero.jpg') center/cover`, padding: "28px 20px 32px", color: "#fff", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", top: -30, right: -30, width: 120, height: 120, borderRadius: "50%", background: `${T.accent}10` }} />
-        <div style={{ position: "absolute", bottom: -20, left: -20, width: 80, height: 80, borderRadius: "50%", background: `${T.accent}08` }} />
-        <p style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.18em", color: T.accent, marginBottom: 8 }}>{formatDateLong(today)}</p>
-        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 42, margin: "0 0 4px", lineHeight: 1, letterSpacing: "-0.01em" }}>{STUDIO_CONFIG.heroLine1}</h1>
-        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 42, margin: "0 0 12px", lineHeight: 1, letterSpacing: "-0.01em", color: T.accent }}>{STUDIO_CONFIG.heroLine2}</h1>
-        <p style={{ fontSize: 15, color: "#b8a898", lineHeight: 1.5, maxWidth: 360 }}>{STUDIO_CONFIG.description}</p>
+      <div style={{ position: "relative", minHeight: 300, overflow: "hidden", display: "flex", alignItems: "flex-end" }}>
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "url('/images/studio/hero.jpg')", backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(0.95)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.01) 50%, rgba(0,0,0,0.12) 100%)" }} />
+        <div style={{ position: "relative", padding: "48px 20px 32px", color: "#fff", width: "100%" }}>
+          <p style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.18em", color: "#fff", marginBottom: 10, textShadow: "0 1px 6px rgba(0,0,0,0.35)" }}>{formatDateLong(today)}</p>
+          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "3.5rem", margin: "0 0 4px", lineHeight: 0.95, letterSpacing: "-0.01em", textShadow: "0 2px 12px rgba(0,0,0,0.28)" }}>{STUDIO_CONFIG.heroLine1}</h1>
+          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "3.5rem", margin: "0 0 14px", lineHeight: 0.95, letterSpacing: "-0.01em", color: T.accent, textShadow: "0 2px 12px rgba(0,0,0,0.28)" }}>{STUDIO_CONFIG.heroLine2}</h1>
+          <p style={{ fontSize: 15, color: "#f5f5f5", lineHeight: 1.5, maxWidth: "85%", textShadow: "0 1px 6px rgba(0,0,0,0.35)" }}>{STUDIO_CONFIG.description}</p>
+        </div>
       </div>
 
       {/* Today's Focus */}
@@ -603,7 +613,7 @@ function ClassesPage() {
   return (
     <div>
       <PageHero title="Classes" subtitle="Past, present, and upcoming practice" image="/images/studio/class-header.jpg" />
-      <div style={{ padding: "0 16px" }}>
+      <div style={{ padding: "20px 16px 16px" }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
         {allPractices.map(p => (
           <PracticeCardFull key={p.id} practice={p} expanded={expandedPractice === p.id} onToggle={() => setExpandedPractice(expandedPractice === p.id ? null : p.id)} />
@@ -633,7 +643,7 @@ function SchedulePage() {
   return (
     <div>
       <PageHero title="Schedule" subtitle="Reserve your spot — classes fill up fast" image="/images/studio/studio-cover.jpg" />
-      <div style={{ padding: "0 16px" }}>
+      <div style={{ padding: "20px 16px 16px" }}>
         <div style={{ display: "flex", gap: 4, marginBottom: 16, overflowX: "auto", paddingBottom: 4 }}>
           {days.map((d, i) => (
             <button key={d} onClick={() => setSelectedDay(i)} style={{ padding: "8px 14px", borderRadius: 8, border: "none", fontSize: 13, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", background: selectedDay === i ? T.accent : T.bgDim, color: selectedDay === i ? "#fff" : T.textMuted, transition: "all 0.15s" }}>
@@ -681,7 +691,7 @@ function PracticePage() {
   return (
     <div>
       <PageHero title="My Practice" subtitle="Track your journey and celebrate growth" image="/images/events/retreat-yoga.jpg" />
-      <div style={{ padding: "0 16px" }}>
+      <div style={{ padding: "20px 16px 16px" }}>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginBottom: 20 }}>
         <div style={{ background: T.accentGhost, border: `1px solid ${T.accentBorder}`, borderRadius: 12, padding: "14px 12px", textAlign: "center" }}>
           <Flame size={20} color={T.accent} style={{ margin: "0 auto 4px" }} />
@@ -771,7 +781,7 @@ function CommunityPage() {
   return (
     <div>
       <PageHero title="Community" subtitle="Celebrate each other's practice" image="/images/events/retreat-group.jpg" />
-      <div style={{ padding: "0 16px" }}>
+      <div style={{ padding: "20px 16px 16px" }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         {COMMUNITY_FEED.map(item => {
           const myC = feedCelebrations[item.id] || 0;
@@ -807,7 +817,7 @@ function TeachersPage() {
   return (
     <div>
       <PageHero title="The FLY Team" subtitle="Meet the Firelight Yoga teaching team" image="/images/studio/founders.jpg" />
-      <div style={{ padding: "0 16px" }}>
+      <div style={{ padding: "20px 16px 16px" }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
         {TEACHERS.map(teacher => {
           const expanded = expandedTeacher === teacher.id;
@@ -857,7 +867,7 @@ function MembershipPage() {
   return (
     <div>
       <PageHero title="Pricing" subtitle="Find the plan that fits your practice" image="/images/studio/hero.jpg" />
-      <div style={{ padding: "0 16px" }}>
+      <div style={{ padding: "20px 16px 16px" }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
         {MEMBERSHIP_TIERS.map(tier => (
           <div key={tier.id} style={{ background: T.bgCard, border: `1px solid ${tier.popular ? T.accent : T.border}`, borderRadius: 14, padding: "20px 18px", position: "relative", overflow: "hidden" }}>
@@ -895,7 +905,7 @@ function EventsPage() {
   return (
     <div>
       <PageHero title="Events" subtitle="Workshops, retreats, and special offerings" image="/images/events/retreat-beach.jpg" />
-      <div style={{ padding: "0 16px" }}>
+      <div style={{ padding: "20px 16px 16px" }}>
       {EVENTS.map(ev => (
         <div key={ev.id} style={{ background: T.bgCard, border: `1px solid ${T.border}`, borderRadius: 14, overflow: "hidden", marginBottom: 16 }}>
           {ev.image && (
@@ -940,24 +950,24 @@ function AdminDashboard() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
       <div>
-        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, color: "#fff", margin: 0 }}>Dashboard</h1>
-        <p style={{ fontSize: 13, color: "#9ca3af", margin: "4px 0 0" }}>Welcome back. Here's what's happening at {STUDIO_CONFIG.name}.</p>
+        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, color: "#111827", margin: 0 }}>Dashboard</h1>
+        <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0 0" }}>Welcome back. Here's what's happening at {STUDIO_CONFIG.name}.</p>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 14 }}>
         {metrics.map((m, i) => (
-          <div key={i} style={{ background: "#1f1f18", border: "1px solid #3a3528", borderRadius: 12, padding: 18 }}>
+          <div key={i} style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 12, padding: 18 }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
               <div style={{ width: 36, height: 36, borderRadius: 8, background: `${m.color}18`, display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <m.icon size={18} color={m.color} />
               </div>
             </div>
-            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 30, color: "#fff", fontWeight: 700 }}>{m.value}</div>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 30, color: "#111827", fontWeight: 700 }}>{m.value}</div>
             <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 4 }}>
-              <span style={{ display: "flex", alignItems: "center", fontSize: 12, fontWeight: 600, color: m.positive ? "#4ade80" : "#f87171" }}>
+              <span style={{ display: "flex", alignItems: "center", fontSize: 12, fontWeight: 600, color: m.positive ? "#15803d" : "#dc2626" }}>
                 {m.positive ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />} {m.change}
               </span>
             </div>
-            <p style={{ fontSize: 13, color: "#9ca3af", margin: "6px 0 0" }}>{m.label}</p>
+            <p style={{ fontSize: 13, color: "#6b7280", margin: "6px 0 0" }}>{m.label}</p>
           </div>
         ))}
       </div>
@@ -966,10 +976,10 @@ function AdminDashboard() {
           <div style={{ height: 220 }}>
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={ADMIN_CHARTS.attendance}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#3a3528" />
-                <XAxis dataKey="day" stroke="#9CA3AF" fontSize={12} />
-                <YAxis stroke="#9CA3AF" fontSize={12} />
-                <Tooltip contentStyle={{ backgroundColor: "#1f1f18", border: "1px solid #3a3528", borderRadius: 8, color: "#fff" }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                <XAxis dataKey="day" stroke="#6b7280" fontSize={12} />
+                <YAxis stroke="#6b7280" fontSize={12} />
+                <Tooltip contentStyle={{ backgroundColor: "#fff", border: "1px solid #e5e7eb", borderRadius: 8, color: "#111827" }} />
                 <Bar dataKey="total" fill={T.accent} radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
@@ -979,10 +989,10 @@ function AdminDashboard() {
           <div style={{ height: 220 }}>
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={ADMIN_CHARTS.revenue}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#3a3528" />
-                <XAxis dataKey="month" stroke="#9CA3AF" fontSize={12} />
-                <YAxis stroke="#9CA3AF" fontSize={12} tickFormatter={v => `$${v / 1000}k`} />
-                <Tooltip contentStyle={{ backgroundColor: "#1f1f18", border: "1px solid #3a3528", borderRadius: 8, color: "#fff" }} formatter={(v) => [`$${v.toLocaleString()}`, "Revenue"]} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                <XAxis dataKey="month" stroke="#6b7280" fontSize={12} />
+                <YAxis stroke="#6b7280" fontSize={12} tickFormatter={v => `$${v / 1000}k`} />
+                <Tooltip contentStyle={{ backgroundColor: "#fff", border: "1px solid #e5e7eb", borderRadius: 8, color: "#111827" }} formatter={(v) => [`$${v.toLocaleString()}`, "Revenue"]} />
                 <defs>
                   <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor={T.accent} stopOpacity={0.3} />
@@ -1005,7 +1015,7 @@ function AdminDashboard() {
                     <Cell key={i} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip contentStyle={{ backgroundColor: "#1f1f18", border: "1px solid #3a3528", borderRadius: 8, color: "#fff" }} />
+                <Tooltip contentStyle={{ backgroundColor: "#fff", border: "1px solid #e5e7eb", borderRadius: 8, color: "#111827" }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -1013,7 +1023,7 @@ function AdminDashboard() {
             {ADMIN_CHARTS.membershipBreakdown.map((entry, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: 4 }}>
                 <div style={{ width: 8, height: 8, borderRadius: "50%", background: entry.color }} />
-                <span style={{ fontSize: 13, color: "#9ca3af" }}>{entry.name} ({entry.value})</span>
+                <span style={{ fontSize: 13, color: "#6b7280" }}>{entry.name} ({entry.value})</span>
               </div>
             ))}
           </div>
@@ -1023,10 +1033,10 @@ function AdminDashboard() {
             {ADMIN_CHARTS.classPopularity.map((c, i) => (
               <div key={i}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
-                  <span style={{ fontSize: 12, color: "#d1d5db", fontWeight: 600 }}>{c.name}</span>
-                  <span style={{ fontSize: 11, color: "#9ca3af" }}>{c.pct}% · {c.fills} full</span>
+                  <span style={{ fontSize: 12, color: "#374151", fontWeight: 600 }}>{c.name}</span>
+                  <span style={{ fontSize: 11, color: "#6b7280" }}>{c.pct}% · {c.fills} full</span>
                 </div>
-                <div style={{ height: 6, background: "#3a3528", borderRadius: 3, overflow: "hidden" }}>
+                <div style={{ height: 6, background: "#e5e7eb", borderRadius: 3, overflow: "hidden" }}>
                   <div style={{ height: "100%", width: `${c.pct}%`, background: T.accent, borderRadius: 3, transition: "width 0.5s" }} />
                 </div>
               </div>
@@ -1050,48 +1060,48 @@ function AdminMembersPage() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, color: "#fff", margin: 0 }}>Members</h1>
+        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, color: "#111827", margin: 0 }}>Members</h1>
         <button style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 16px", borderRadius: 8, border: "none", background: T.accent, color: "#fff", fontWeight: 600, fontSize: 13, cursor: "pointer" }}>
           <UserPlus size={16} /> Add Member
         </button>
       </div>
       <div style={{ display: "flex", gap: 10 }}>
         <div style={{ flex: 1, position: "relative" }}>
-          <Search size={16} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#6b7280" }} />
-          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search members..." style={{ width: "100%", padding: "10px 12px 10px 36px", background: "#1f1f18", border: "1px solid #3a3528", borderRadius: 8, color: "#fff", fontSize: 13, outline: "none", boxSizing: "border-box" }} />
+          <Search size={16} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#9ca3af" }} />
+          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search members..." style={{ width: "100%", padding: "10px 12px 10px 36px", background: "#fff", border: "1px solid #e5e7eb", borderRadius: 8, color: "#111827", fontSize: 13, outline: "none", boxSizing: "border-box" }} />
         </div>
         <div style={{ display: "flex", gap: 4 }}>
           {["all", "active", "frozen"].map(f => (
-            <button key={f} onClick={() => setFilter(f)} style={{ padding: "8px 14px", borderRadius: 8, border: "none", fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "capitalize", background: filter === f ? T.accent : "#1f1f18", color: filter === f ? "#fff" : "#9ca3af" }}>
+            <button key={f} onClick={() => setFilter(f)} style={{ padding: "8px 14px", borderRadius: 8, border: "1px solid #e5e7eb", fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "capitalize", background: filter === f ? T.accent : "#fff", color: filter === f ? "#fff" : "#4b5563" }}>
               {f}
             </button>
           ))}
         </div>
       </div>
-      <div style={{ background: "#1f1f18", border: "1px solid #3a3528", borderRadius: 12, overflow: "hidden" }}>
+      <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 12, overflow: "hidden" }}>
         <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
           <thead>
-            <tr style={{ borderBottom: "1px solid #3a3528" }}>
+            <tr style={{ borderBottom: "1px solid #e5e7eb", background: "#f9fafb" }}>
               {["Member", "Membership", "Status", "Classes", "Last Visit"].map(h => (
-                <th key={h} style={{ padding: "12px 16px", textAlign: "left", color: "#9ca3af", fontWeight: 600, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em" }}>{h}</th>
+                <th key={h} style={{ padding: "12px 16px", textAlign: "left", color: "#6b7280", fontWeight: 600, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em" }}>{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {filtered.map(m => (
-              <tr key={m.id} style={{ borderBottom: "1px solid #3a3528" }}>
+              <tr key={m.id} style={{ borderBottom: "1px solid #f3f4f6" }}>
                 <td style={{ padding: "12px 16px" }}>
-                  <p style={{ color: "#fff", fontWeight: 600, margin: 0 }}>{m.name}</p>
-                  <p style={{ color: "#6b7280", fontSize: 12, margin: "2px 0 0" }}>{m.email}</p>
+                  <p style={{ color: "#111827", fontWeight: 600, margin: 0 }}>{m.name}</p>
+                  <p style={{ color: "#9ca3af", fontSize: 12, margin: "2px 0 0" }}>{m.email}</p>
                 </td>
-                <td style={{ padding: "12px 16px", color: "#d1d5db" }}>{m.membership}</td>
+                <td style={{ padding: "12px 16px", color: "#374151" }}>{m.membership}</td>
                 <td style={{ padding: "12px 16px" }}>
                   <span style={{ padding: "3px 8px", borderRadius: 6, fontSize: 11, fontWeight: 600, textTransform: "capitalize", background: m.status === "active" ? `${T.accent}20` : `${T.warning}20`, color: m.status === "active" ? T.accent : T.warning }}>
                     {m.status}
                   </span>
                 </td>
-                <td style={{ padding: "12px 16px", color: "#d1d5db", fontFamily: "monospace" }}>{m.checkIns}</td>
-                <td style={{ padding: "12px 16px", color: "#9ca3af", fontSize: 12 }}>{formatDateShort(m.lastVisit)}</td>
+                <td style={{ padding: "12px 16px", color: "#374151", fontFamily: "monospace" }}>{m.checkIns}</td>
+                <td style={{ padding: "12px 16px", color: "#6b7280", fontSize: 12 }}>{formatDateShort(m.lastVisit)}</td>
               </tr>
             ))}
           </tbody>
@@ -1104,23 +1114,23 @@ function AdminMembersPage() {
 function AdminSchedulePage() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-      <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, color: "#fff", margin: 0 }}>Schedule Management</h1>
-      <div style={{ background: "#1f1f18", border: "1px solid #3a3528", borderRadius: 12, overflow: "hidden" }}>
+      <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, color: "#111827", margin: 0 }}>Schedule Management</h1>
+      <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 12, overflow: "hidden" }}>
         <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
           <thead>
-            <tr style={{ borderBottom: "1px solid #3a3528" }}>
+            <tr style={{ borderBottom: "1px solid #e5e7eb", background: "#f9fafb" }}>
               {["Time", "Class", "Teacher", "Capacity", "Registered", "Status"].map(h => (
-                <th key={h} style={{ padding: "12px 16px", textAlign: "left", color: "#9ca3af", fontWeight: 600, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em" }}>{h}</th>
+                <th key={h} style={{ padding: "12px 16px", textAlign: "left", color: "#6b7280", fontWeight: 600, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em" }}>{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {CLASSES_TODAY.map(c => (
-              <tr key={c.id} style={{ borderBottom: "1px solid #3a3528" }}>
-                <td style={{ padding: "12px 16px", color: "#fff", fontFamily: "monospace" }}>{fmtTime(c.time)}</td>
-                <td style={{ padding: "12px 16px", color: "#d1d5db", fontWeight: 600 }}>{c.type}</td>
-                <td style={{ padding: "12px 16px", color: "#d1d5db" }}>{c.coach}</td>
-                <td style={{ padding: "12px 16px", color: "#9ca3af" }}>{c.capacity}</td>
+              <tr key={c.id} style={{ borderBottom: "1px solid #f3f4f6" }}>
+                <td style={{ padding: "12px 16px", color: "#111827", fontFamily: "monospace" }}>{fmtTime(c.time)}</td>
+                <td style={{ padding: "12px 16px", color: "#374151", fontWeight: 600 }}>{c.type}</td>
+                <td style={{ padding: "12px 16px", color: "#374151" }}>{c.coach}</td>
+                <td style={{ padding: "12px 16px", color: "#6b7280" }}>{c.capacity}</td>
                 <td style={{ padding: "12px 16px" }}>
                   <span style={{ fontFamily: "monospace", fontWeight: 600, color: c.registered >= c.capacity ? T.warning : T.accent }}>{c.registered}/{c.capacity}</span>
                 </td>
@@ -1142,14 +1152,14 @@ function AdminTeachersPage() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, color: "#fff", margin: 0 }}>Teachers</h1>
+        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, color: "#111827", margin: 0 }}>Teachers</h1>
         <button style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 16px", borderRadius: 8, border: "none", background: T.accent, color: "#fff", fontWeight: 600, fontSize: 13, cursor: "pointer" }}>
           <UserPlus size={16} /> Add Teacher
         </button>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 14 }}>
         {TEACHERS.map(teacher => (
-          <div key={teacher.id} style={{ background: "#1f1f18", border: "1px solid #3a3528", borderRadius: 12, padding: 18 }}>
+          <div key={teacher.id} style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 12, padding: 18 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
               {teacher.photo ? (
                 <img src={teacher.photo} alt={`${teacher.firstName} ${teacher.lastName}`} loading="lazy" style={{ width: 48, height: 48, borderRadius: 10, objectFit: "cover", flexShrink: 0 }} />
@@ -1159,18 +1169,18 @@ function AdminTeachersPage() {
                 </div>
               )}
               <div>
-                <h3 style={{ fontSize: 15, fontWeight: 700, color: "#fff", margin: 0 }}>{teacher.firstName} {teacher.lastName}</h3>
+                <h3 style={{ fontSize: 15, fontWeight: 700, color: "#111827", margin: 0 }}>{teacher.firstName} {teacher.lastName}</h3>
                 <p style={{ fontSize: 12, color: T.accent, fontWeight: 600, margin: "2px 0 0" }}>{teacher.role}</p>
               </div>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginBottom: 10 }}>
               {teacher.certs.map(c => (
-                <span key={c} style={{ fontSize: 12, fontWeight: 600, padding: "3px 8px", borderRadius: 4, background: "#3a3528", color: "#9ca3af" }}>{c}</span>
+                <span key={c} style={{ fontSize: 12, fontWeight: 600, padding: "3px 8px", borderRadius: 4, background: "#f3f4f6", color: "#4b5563" }}>{c}</span>
               ))}
             </div>
             <div style={{ display: "flex", gap: 6 }}>
-              <button style={{ flex: 1, padding: "8px 0", borderRadius: 6, border: "1px solid #3a3528", background: "transparent", color: "#d1d5db", fontSize: 12, fontWeight: 600, cursor: "pointer" }}>Edit</button>
-              <button style={{ flex: 1, padding: "8px 0", borderRadius: 6, border: "1px solid #3a3528", background: "transparent", color: "#d1d5db", fontSize: 12, fontWeight: 600, cursor: "pointer" }}>Schedule</button>
+              <button style={{ flex: 1, padding: "8px 0", borderRadius: 6, border: "1px solid #e5e7eb", background: "#fff", color: "#374151", fontSize: 12, fontWeight: 600, cursor: "pointer" }}>Edit</button>
+              <button style={{ flex: 1, padding: "8px 0", borderRadius: 6, border: "1px solid #e5e7eb", background: "#fff", color: "#374151", fontSize: 12, fontWeight: 600, cursor: "pointer" }}>Schedule</button>
             </div>
           </div>
         ))}
@@ -1186,19 +1196,19 @@ function AdminCommsPage() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-      <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, color: "#fff", margin: 0 }}>Communications</h1>
+      <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, color: "#111827", margin: 0 }}>Communications</h1>
       <AdminCard title="Quick Announcement">
-        <textarea value={message} onChange={e => setMessage(e.target.value)} placeholder="Type an announcement for all members..." rows={4} style={{ width: "100%", padding: 12, background: "#2a2a20", border: "1px solid #3a3528", borderRadius: 8, color: "#fff", fontSize: 13, fontFamily: "'DM Sans', system-ui, sans-serif", resize: "none", outline: "none", boxSizing: "border-box", marginBottom: 12 }} />
-        <button onClick={handleSend} disabled={!message.trim()} style={{ display: "flex", alignItems: "center", gap: 6, padding: "10px 20px", borderRadius: 8, border: "none", background: message.trim() ? T.accent : "#3a3528", color: "#fff", fontWeight: 600, fontSize: 13, cursor: message.trim() ? "pointer" : "default" }}>
+        <textarea value={message} onChange={e => setMessage(e.target.value)} placeholder="Type an announcement for all members..." rows={4} style={{ width: "100%", padding: 12, background: "#f9fafb", border: "1px solid #e5e7eb", borderRadius: 8, color: "#111827", fontSize: 13, fontFamily: "'DM Sans', system-ui, sans-serif", resize: "none", outline: "none", boxSizing: "border-box", marginBottom: 12 }} />
+        <button onClick={handleSend} disabled={!message.trim()} style={{ display: "flex", alignItems: "center", gap: 6, padding: "10px 20px", borderRadius: 8, border: "none", background: message.trim() ? T.accent : "#e5e7eb", color: message.trim() ? "#fff" : "#9ca3af", fontWeight: 600, fontSize: 13, cursor: message.trim() ? "pointer" : "default" }}>
           {sent ? <><Check size={14} /> Sent!</> : <><Send size={14} /> Send to All Members</>}
         </button>
       </AdminCard>
       <AdminCard title="Recent Announcements">
         {ANNOUNCEMENTS.map(a => (
-          <div key={a.id} style={{ padding: "12px 0", borderBottom: "1px solid #3a3528", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <div key={a.id} style={{ padding: "12px 0", borderBottom: "1px solid #f3f4f6", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
             <div>
-              <p style={{ color: "#fff", fontWeight: 600, fontSize: 14, margin: 0 }}>{a.title}</p>
-              <p style={{ color: "#9ca3af", fontSize: 12, margin: "4px 0 0" }}>{a.message}</p>
+              <p style={{ color: "#111827", fontWeight: 600, fontSize: 14, margin: 0 }}>{a.title}</p>
+              <p style={{ color: "#6b7280", fontSize: 12, margin: "4px 0 0" }}>{a.message}</p>
             </div>
             {a.pinned && <span style={{ fontSize: 12, fontWeight: 600, padding: "3px 8px", borderRadius: 4, background: `${T.accent}20`, color: T.accent }}>Pinned</span>}
           </div>
@@ -1208,80 +1218,139 @@ function AdminCommsPage() {
   );
 }
 
-// ═══════════════════════════════════════════════════════════════
-//  SALES WRAPPER
-// ═══════════════════════════════════════════════════════════════
-const WRAPPER_FEATURES = [
-  { icon: CalendarDays, label: "Class Scheduling", sub: "Weekly schedule with real-time reservations" },
-  { icon: TrendingUp, label: "Practice Tracking", sub: "Reflections, streaks, and milestone badges" },
-  { icon: Heart, label: "Community Feed", sub: "Member milestones and celebrations" },
-  { icon: Users, label: "Teacher Profiles", sub: "Bios, certifications, and specialties" },
-  { icon: CreditCard, label: "Membership Tiers", sub: "5 plans from drop-in to unlimited" },
-  { icon: PartyPopper, label: "Events & Workshops", sub: "Sound baths, retreats, and teacher training" },
-  { icon: Bell, label: "Smart Notifications", sub: "Class reminders and streak alerts" },
-  { icon: LayoutDashboard, label: "Admin Dashboard", sub: "Full analytics, CRM, and broadcast tools" },
-];
-
-const WRAPPER_CARDS = [
-  { icon: Shield, title: "Admin Dashboard", body: "Tap the shield icon in the app header to access the full admin suite -- analytics, member CRM, scheduling, and broadcast tools." },
-  { icon: Flame, title: "Built for Firelight Yoga", body: "Custom-designed around your brand, class types, teachers, and the community your members already love -- your Fire Room and Earth Room sanctuary in North Portland." },
-  { icon: MapPin, title: "Community-First Design", body: "Celebrate milestones, track streaks, share guest passes, and build the kind of studio loyalty that keeps members coming back to the mat." },
-];
-
-function DemoWrapper({ children }) {
+function AdminEventsPage() {
   return (
-    <div style={{ display: "flex", justifyContent: "center", gap: 48, height: "100vh", padding: "20px 32px", background: "#f5f0e8", fontFamily: "'DM Sans', system-ui, sans-serif", alignItems: "center", overflow: "hidden" }}>
-      {/* Left Panel */}
-      <div className="sales-panel sales-left" style={{ width: 280, flexShrink: 0, paddingTop: 20, maxHeight: "100vh", overflowY: "auto" }}>
-        <p style={{ fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em", color: T.accent, marginBottom: 28 }}>App Preview</p>
-        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 36 }}>
-          <img src="/images/logo-icon.svg" alt="Firelight Yoga" style={{ width: 48, height: 48, borderRadius: 12 }} />
-          <div>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 24, margin: 0, color: T.text, lineHeight: 1.1 }}>FIRELIGHT</h2>
-            <p style={{ fontSize: 14, color: T.textMuted, margin: "2px 0 0" }}>Yoga Studio App</p>
-          </div>
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          {WRAPPER_FEATURES.map((f, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
-              <f.icon size={20} color={T.textMuted} style={{ flexShrink: 0, marginTop: 2 }} />
-              <div>
-                <p style={{ fontWeight: 700, fontSize: 15, margin: 0, color: T.text }}>{f.label}</p>
-                <p style={{ fontSize: 14, color: T.textMuted, margin: "2px 0 0", lineHeight: 1.4 }}>{f.sub}</p>
-              </div>
+    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, color: "#111827", margin: 0 }}>Events & Workshops</h1>
+        <button style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 16px", borderRadius: 8, border: "none", background: T.accent, color: "#fff", fontWeight: 600, fontSize: 13, cursor: "pointer" }}>
+          <UserPlus size={16} /> New Event
+        </button>
+      </div>
+      <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 12, overflow: "hidden" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+          <thead>
+            <tr style={{ borderBottom: "1px solid #e5e7eb", background: "#f9fafb" }}>
+              {["Event", "Type", "Date", "Fee", "Registered", "Status", ""].map(h => (
+                <th key={h} style={{ padding: "12px 16px", textAlign: "left", color: "#6b7280", fontWeight: 600, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em" }}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {EVENTS.map(ev => (
+              <tr key={ev.id} style={{ borderBottom: "1px solid #f3f4f6" }}>
+                <td style={{ padding: "12px 16px", color: "#111827", fontWeight: 600 }}>{ev.name}</td>
+                <td style={{ padding: "12px 16px", color: "#374151" }}>{ev.type}</td>
+                <td style={{ padding: "12px 16px", color: "#6b7280" }}>{formatDateShort(ev.date)}</td>
+                <td style={{ padding: "12px 16px", color: "#374151", fontFamily: "monospace" }}>${ev.fee}</td>
+                <td style={{ padding: "12px 16px" }}>
+                  <span style={{ fontFamily: "monospace", fontWeight: 600, color: ev.registered >= ev.maxParticipants ? T.warning : T.accent }}>{ev.registered}/{ev.maxParticipants}</span>
+                </td>
+                <td style={{ padding: "12px 16px" }}>
+                  <span style={{ padding: "3px 8px", borderRadius: 6, fontSize: 11, fontWeight: 600, background: `${T.accent}20`, color: T.accent }}>{ev.status}</span>
+                </td>
+                <td style={{ padding: "12px 16px", textAlign: "right" }}>
+                  <button style={{ padding: "6px 12px", borderRadius: 6, border: "1px solid #e5e7eb", background: "#fff", color: "#374151", fontSize: 12, fontWeight: 600, cursor: "pointer" }}>Edit</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function AdminPricingPage() {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, color: "#111827", margin: 0 }}>Pricing & Memberships</h1>
+        <button style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 16px", borderRadius: 8, border: "none", background: T.accent, color: "#fff", fontWeight: 600, fontSize: 13, cursor: "pointer" }}>
+          <UserPlus size={16} /> Add Plan
+        </button>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 14 }}>
+        {MEMBERSHIP_TIERS.map(tier => (
+          <div key={tier.id} style={{ background: "#fff", border: `1px solid ${tier.popular ? T.accentBorder : "#e5e7eb"}`, borderRadius: 12, padding: 18 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: "#111827", margin: 0 }}>{tier.name}</h3>
+              {tier.popular && <span style={{ fontSize: 10, fontWeight: 700, padding: "3px 8px", borderRadius: 4, background: `${T.accent}20`, color: T.accent, textTransform: "uppercase", letterSpacing: "0.05em" }}>Popular</span>}
             </div>
-          ))}
-        </div>
-        <div style={{ marginTop: 48, display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 13, fontWeight: 600, color: T.textFaint }}>Built by</span>
-          <span style={{ fontSize: 15, fontWeight: 800, letterSpacing: "0.08em", color: T.text }}>LUMI</span>
-          <span style={{ fontSize: 12, color: T.textFaint }}>--</span>
-          <a href="https://lumiclass.app" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, fontWeight: 600, color: T.accent, textDecoration: "none", display: "flex", alignItems: "center", gap: 3 }}>
-            LumiClass.app <ExternalLink size={11} />
-          </a>
-        </div>
-      </div>
-
-      {/* Center -- the app */}
-      <div style={{ flexShrink: 0 }}>
-        {children}
-      </div>
-
-      {/* Right Panel */}
-      <div className="sales-panel sales-right" style={{ width: 300, flexShrink: 0, paddingTop: 20, maxHeight: "100vh", overflowY: "auto", display: "flex", flexDirection: "column", gap: 20 }}>
-        {WRAPPER_CARDS.map((card, i) => (
-          <div key={i} style={{ background: "#fff", borderRadius: 14, padding: "24px 22px", border: `1px solid ${T.border}` }}>
-            <card.icon size={24} color={T.accent} style={{ marginBottom: 14 }} />
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, margin: "0 0 8px", color: T.text }}>{card.title}</h3>
-            <p style={{ fontSize: 15, color: T.textMuted, margin: 0, lineHeight: 1.55 }}>{card.body}</p>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 12 }}>
+              <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, color: T.accent, fontWeight: 700 }}>${tier.price}</span>
+              <span style={{ fontSize: 12, color: "#6b7280" }}>{tier.period}</span>
+            </div>
+            <ul style={{ listStyle: "none", padding: 0, margin: "0 0 14px" }}>
+              {tier.features.slice(0, 3).map((f, i) => (
+                <li key={i} style={{ display: "flex", alignItems: "center", gap: 6, padding: "3px 0", fontSize: 12, color: "#4b5563" }}>
+                  <CircleCheck size={12} color={T.accent} style={{ flexShrink: 0 }} />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <div style={{ display: "flex", gap: 6 }}>
+              <button style={{ flex: 1, padding: "8px 0", borderRadius: 6, border: "1px solid #e5e7eb", background: "#fff", color: "#374151", fontSize: 12, fontWeight: 600, cursor: "pointer" }}>Edit</button>
+              <button style={{ flex: 1, padding: "8px 0", borderRadius: 6, border: "1px solid #e5e7eb", background: "#fff", color: "#374151", fontSize: 12, fontWeight: 600, cursor: "pointer" }}>Archive</button>
+            </div>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
 
-        <div style={{ textAlign: "center", padding: "16px 0 0" }}>
-          <p style={{ fontSize: 12, color: T.textFaint, margin: 0 }}>
-            Powered by <span style={{ fontWeight: 800, letterSpacing: "0.08em", color: T.textMuted }}>LUMI</span>
-          </p>
+function AdminSettingsPage() {
+  const [name, setName] = useState(STUDIO_CONFIG.name);
+  const [tagline, setTagline] = useState(STUDIO_CONFIG.tagline);
+  const [phone, setPhone] = useState(STUDIO_CONFIG.phone);
+  const [email, setEmail] = useState(STUDIO_CONFIG.email);
+  const [street, setStreet] = useState(STUDIO_CONFIG.address.street);
+  const [saved, setSaved] = useState(false);
+
+  const fieldStyle = { width: "100%", padding: "10px 12px", background: "#fff", border: "1px solid #e5e7eb", borderRadius: 8, color: "#111827", fontSize: 13, fontFamily: "'DM Sans', system-ui, sans-serif", outline: "none", boxSizing: "border-box" };
+  const labelStyle = { display: "block", fontSize: 12, fontWeight: 600, color: "#6b7280", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" };
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 640 }}>
+      <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, color: "#111827", margin: 0 }}>Studio Settings</h1>
+      <AdminCard title="Studio Info">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+          <div>
+            <label style={labelStyle}>Studio Name</label>
+            <input value={name} onChange={e => setName(e.target.value)} style={fieldStyle} />
+          </div>
+          <div>
+            <label style={labelStyle}>Tagline</label>
+            <input value={tagline} onChange={e => setTagline(e.target.value)} style={fieldStyle} />
+          </div>
+          <div>
+            <label style={labelStyle}>Phone</label>
+            <input value={phone} onChange={e => setPhone(e.target.value)} style={fieldStyle} />
+          </div>
+          <div>
+            <label style={labelStyle}>Email</label>
+            <input value={email} onChange={e => setEmail(e.target.value)} style={fieldStyle} />
+          </div>
+          <div style={{ gridColumn: "1 / -1" }}>
+            <label style={labelStyle}>Street Address</label>
+            <input value={street} onChange={e => setStreet(e.target.value)} style={fieldStyle} />
+          </div>
         </div>
+      </AdminCard>
+      <AdminCard title="Brand Theme">
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div style={{ width: 36, height: 36, borderRadius: 8, background: T.accent, border: "1px solid #e5e7eb" }} />
+          <div>
+            <p style={{ margin: 0, fontSize: 13, fontWeight: 600, color: "#111827" }}>Accent Color</p>
+            <p style={{ margin: "2px 0 0", fontSize: 12, color: "#6b7280" }}>Used across buttons, highlights, and brand moments</p>
+          </div>
+        </div>
+      </AdminCard>
+      <div>
+        <button onClick={() => { setSaved(true); setTimeout(() => setSaved(false), 1800); }} style={{ display: "flex", alignItems: "center", gap: 6, padding: "10px 20px", borderRadius: 8, border: "none", background: T.accent, color: "#fff", fontWeight: 600, fontSize: 13, cursor: "pointer" }}>
+          {saved ? <><Check size={14} /> Saved</> : <><Send size={14} /> Save Settings</>}
+        </button>
       </div>
     </div>
   );
@@ -1290,9 +1359,9 @@ function DemoWrapper({ children }) {
 // ═══════════════════════════════════════════════════════════════
 //  MAIN APP
 // ═══════════════════════════════════════════════════════════════
-export default function App() {
-  const [page, setPage] = useState("home");
-  const [isAdmin, setIsAdmin] = useState(false);
+export default function App({ startInAdmin = false, onEnterAdmin, onExitAdmin }) {
+  const [page, setPage] = useState(startInAdmin ? "admin-dashboard" : "home");
+  const [isAdmin, setIsAdmin] = useState(startInAdmin);
   const [showMore, setShowMore] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -1324,26 +1393,28 @@ export default function App() {
 
   const mainTabs = [
     { id: "home", label: "Home", icon: Home },
-    { id: "schedule", label: "Schedule", icon: CalendarDays },
-    { id: "events", label: "Events", icon: PartyPopper },
+    { id: "schedule", label: "Schedule", icon: Calendar },
     { id: "practice", label: "Practice", icon: TrendingUp },
+    { id: "community", label: "Community", icon: Heart },
     { id: "more", label: "More", icon: Menu },
   ];
 
   const moreItems = [
     { id: "classes", label: "Classes", icon: Calendar },
-    { id: "teachers", label: "FLY Team", icon: Users },
-    { id: "membership", label: "Pricing", icon: CreditCard },
-    { id: "community", label: "Community", icon: Heart },
-    { id: "rewards", label: "FLY Rewards", icon: Gift },
+    { id: "teachers", label: "Teachers", icon: Users },
+    { id: "membership", label: "Membership", icon: CreditCard },
+    { id: "events", label: "Events", icon: CalendarDays },
   ];
 
   const adminTabs = [
     { id: "admin-dashboard", label: "Dashboard", icon: LayoutDashboard },
-    { id: "admin-members", label: "Members", icon: Users },
     { id: "admin-schedule", label: "Schedule", icon: CalendarDays },
     { id: "admin-teachers", label: "Teachers", icon: UserCheck },
-    { id: "admin-comms", label: "Communications", icon: Megaphone },
+    { id: "admin-members", label: "Members", icon: Users },
+    { id: "admin-events", label: "Events", icon: PartyPopper },
+    { id: "admin-pricing", label: "Pricing", icon: DollarSign },
+    { id: "admin-comms", label: "Broadcast", icon: Megaphone },
+    { id: "admin-settings", label: "Settings", icon: Settings },
   ];
 
   const isMoreActive = moreItems.some(item => item.id === page);
@@ -1361,7 +1432,7 @@ export default function App() {
       case "rewards": return (
         <div>
           <PageHero title="FLY Rewards" subtitle="Earn points with every class, redeem for perks" image="/images/studio/pdx-location.jpg" />
-          <div style={{ padding: "0 16px" }}>
+          <div style={{ padding: "20px 16px 16px" }}>
             <div style={{ background: `linear-gradient(135deg, ${T.bg}, hsl(20,25%,16%))`, borderRadius: 16, padding: "24px 20px", color: "#fff", marginBottom: 16 }}>
               <p style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: T.accent, margin: "0 0 8px" }}>Your Points</p>
               <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 48, fontWeight: 700 }}>1,240</div>
@@ -1390,7 +1461,10 @@ export default function App() {
       case "admin-members": return <AdminMembersPage />;
       case "admin-schedule": return <AdminSchedulePage />;
       case "admin-teachers": return <AdminTeachersPage />;
+      case "admin-events": return <AdminEventsPage />;
+      case "admin-pricing": return <AdminPricingPage />;
       case "admin-comms": return <AdminCommsPage />;
+      case "admin-settings": return <AdminSettingsPage />;
       default: return <HomePage />;
     }
   };
@@ -1399,30 +1473,30 @@ export default function App() {
   if (isAdmin) {
     return (
       <AppContext.Provider value={{ page, setPage, classRegistrations, registerForClass, openReservation, feedCelebrations, celebrateFeed }}>
-        <div style={{ display: "flex", minHeight: "100vh", fontFamily: "'DM Sans', system-ui, sans-serif", background: "#141410", color: "#fff" }}>
-          <aside style={{ width: 240, background: "#1a1a14", borderRight: "1px solid #3a3528", display: "flex", flexDirection: "column", position: "fixed", top: 0, bottom: 0 }}>
-            <div style={{ padding: "16px 14px", borderBottom: "1px solid #3a3528", display: "flex", alignItems: "center", gap: 10 }}>
+        <div style={{ display: "flex", minHeight: "100vh", fontFamily: "'DM Sans', system-ui, sans-serif", background: "#f5f5f5", color: "#1a1a1a" }}>
+          <aside style={{ width: 240, background: "#fff", borderRight: "1px solid #e5e7eb", display: "flex", flexDirection: "column", position: "fixed", top: 0, bottom: 0, left: 0 }}>
+            <div style={{ padding: "16px 14px", borderBottom: "1px solid #e5e7eb", display: "flex", alignItems: "center", gap: 10 }}>
               <img src="/images/logo-icon.svg" alt="Firelight Yoga" style={{ width: 36, height: 36, borderRadius: 8 }} />
               <div>
-                <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 16, color: "#fff", display: "block", lineHeight: 1 }}>{STUDIO_CONFIG.name}</span>
-                <span style={{ fontSize: 11, color: "#71717a", textTransform: "uppercase", letterSpacing: "0.15em" }}>Admin</span>
+                <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 16, color: "#111827", display: "block", lineHeight: 1 }}>{STUDIO_CONFIG.name}</span>
+                <span style={{ fontSize: 11, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.15em" }}>Admin</span>
               </div>
             </div>
             <nav style={{ flex: 1, padding: "12px 8px", overflow: "auto" }}>
-              <p style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#71717a", padding: "0 10px", margin: "0 0 8px" }}>Management</p>
+              <p style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9ca3af", padding: "0 10px", margin: "0 0 8px" }}>Management</p>
               {adminTabs.map(tab => {
                 const active = page === tab.id;
                 return (
-                  <button key={tab.id} onClick={() => setPage(tab.id)} style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 12px", borderRadius: 8, border: "none", background: active ? T.accent : "transparent", color: active ? "#fff" : "#a1a1aa", fontSize: 13, fontWeight: active ? 600 : 400, cursor: "pointer", marginBottom: 2, textAlign: "left" }}>
+                  <button key={tab.id} onClick={() => setPage(tab.id)} style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 12px", borderRadius: 8, border: "none", background: active ? T.accent : "transparent", color: active ? "#fff" : "#4b5563", fontSize: 13, fontWeight: active ? 600 : 500, cursor: "pointer", marginBottom: 2, textAlign: "left" }}>
                     <tab.icon size={18} />
                     <span>{tab.label}</span>
-                    {active && <ChevronRight size={14} style={{ marginLeft: "auto", opacity: 0.6 }} />}
+                    {active && <ChevronRight size={14} style={{ marginLeft: "auto", opacity: 0.7 }} />}
                   </button>
                 );
               })}
             </nav>
-            <div style={{ borderTop: "1px solid #3a3528", padding: "10px 8px" }}>
-              <button onClick={() => { setIsAdmin(false); setPage("home"); }} style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 12px", borderRadius: 8, border: "none", background: "transparent", color: "#a1a1aa", fontSize: 13, cursor: "pointer", textAlign: "left" }}>
+            <div style={{ borderTop: "1px solid #e5e7eb", padding: "10px 8px" }}>
+              <button onClick={() => { setIsAdmin(false); setPage("home"); if (onExitAdmin) onExitAdmin(); }} style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 12px", borderRadius: 8, border: "none", background: "transparent", color: "#4b5563", fontSize: 13, cursor: "pointer", textAlign: "left", fontWeight: 500 }}>
                 <LogOut size={18} />
                 <span>Exit Admin</span>
               </button>
@@ -1437,54 +1511,62 @@ export default function App() {
   }
 
   // ——— CONSUMER LAYOUT ———
+  const enterAdmin = () => {
+    if (onEnterAdmin) {
+      onEnterAdmin();
+    } else {
+      setIsAdmin(true);
+      setPage("admin-dashboard");
+    }
+  };
+
   return (
     <AppContext.Provider value={{ page, setPage, classRegistrations, registerForClass, openReservation, feedCelebrations, celebrateFeed }}>
-      <DemoWrapper>
-      <div style={{ width: 390, maxWidth: 390, height: "94vh", background: T.bgDim, fontFamily: "'DM Sans', system-ui, sans-serif", position: "relative", borderRadius: 20, overflow: "hidden", boxShadow: "0 8px 60px rgba(0,0,0,.12), 0 2px 12px rgba(0,0,0,.06)", display: "flex", flexDirection: "column" }}>
+      <div style={{ width: "100%", height: "100%", background: T.bgDim, fontFamily: "'DM Sans', system-ui, sans-serif", position: "relative", overflow: "hidden" }}>
 
-        {/* Header */}
-        <header style={{ flexShrink: 0, zIndex: 30, background: T.bg, color: "#fff", padding: "10px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <button onClick={handleLogoClick} style={{ display: "flex", alignItems: "center", gap: 10, background: "none", border: "none", cursor: "pointer", color: "#fff" }}>
-            <img src="/images/logo-icon.svg" alt="Firelight Yoga" style={{ width: 38, height: 38, borderRadius: 10 }} />
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, lineHeight: 1, letterSpacing: "0.02em" }}>{STUDIO_CONFIG.name}</span>
-              <span style={{ fontSize: 11, color: "#71717a", textTransform: "uppercase", letterSpacing: "0.15em" }}>{STUDIO_CONFIG.subtitle}</span>
+        {/* Content area — top 0, bottom 60, scrollable */}
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 60, overflowY: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }}>
+          {/* Header */}
+          <header style={{ position: "sticky", top: 0, zIndex: 30, background: T.bg, color: "#fff", padding: "10px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <button onClick={handleLogoClick} style={{ display: "flex", alignItems: "center", gap: 10, background: "none", border: "none", cursor: "pointer", color: "#fff" }}>
+              <img src="/images/logo-icon.svg" alt="Firelight Yoga" style={{ width: 38, height: 38, borderRadius: 10 }} />
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, lineHeight: 1, letterSpacing: "0.02em" }}>{STUDIO_CONFIG.name}</span>
+                <span style={{ fontSize: 11, color: "#c8b8a0", textTransform: "uppercase", letterSpacing: "0.15em" }}>{STUDIO_CONFIG.subtitle}</span>
+              </div>
+            </button>
+            <div style={{ display: "flex", alignItems: "center", gap: 2 }}>
+              <button onClick={enterAdmin} aria-label="Admin panel" style={{ padding: 8, borderRadius: 8, border: "none", background: "transparent", cursor: "pointer", color: T.accent }}>
+                <Shield size={20} />
+              </button>
+              <button onClick={() => setShowNotifications(true)} aria-label="Notifications" style={{ padding: 8, borderRadius: 8, border: "none", background: "transparent", cursor: "pointer", color: "#fff", position: "relative" }}>
+                <Bell size={20} />
+                {unreadCount > 0 && <span style={{ position: "absolute", top: 4, right: 4, width: 14, height: 14, borderRadius: "50%", background: T.accent, fontSize: 9, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>{unreadCount}</span>}
+              </button>
+              <button onClick={() => setShowSettings(true)} aria-label="Settings" style={{ padding: 8, borderRadius: 8, border: "none", background: "transparent", cursor: "pointer", color: "#fff" }}>
+                <Settings size={20} />
+              </button>
             </div>
-          </button>
-          <div style={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <button onClick={() => { setIsAdmin(true); setPage("admin-dashboard"); }} aria-label="Admin panel" style={{ padding: 8, borderRadius: 8, border: "none", background: "transparent", cursor: "pointer", color: T.accent }}>
-              <Shield size={20} />
-            </button>
-            <button onClick={() => setShowNotifications(true)} aria-label="Notifications" style={{ padding: 8, borderRadius: 8, border: "none", background: "transparent", cursor: "pointer", color: "#fff", position: "relative" }}>
-              <Bell size={20} />
-              {unreadCount > 0 && <span style={{ position: "absolute", top: 4, right: 4, width: 14, height: 14, borderRadius: "50%", background: T.accent, fontSize: 9, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>{unreadCount}</span>}
-            </button>
-            <button onClick={() => setShowSettings(true)} aria-label="Settings" style={{ padding: 8, borderRadius: 8, border: "none", background: "transparent", cursor: "pointer", color: "#fff" }}>
-              <Settings size={20} />
-            </button>
-          </div>
-        </header>
+          </header>
 
-        {/* Content */}
-        <main style={{ flex: 1, overflowY: "auto", paddingBottom: 0 }}>
           {renderPage()}
-        </main>
+        </div>
 
         {/* More Menu */}
         {showMore && (
-          <div onClick={() => setShowMore(false)} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,.5)", backdropFilter: "blur(4px)", zIndex: 40 }}>
-            <div onClick={e => e.stopPropagation()} style={{ position: "absolute", bottom: 68, left: 16, right: 16, maxWidth: 358, margin: "0 auto", background: T.bgCard, borderRadius: 16, padding: "14px 12px", boxShadow: "0 8px 32px rgba(0,0,0,.15)" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0 6px 8px" }}>
-                <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 20 }}>More</span>
+          <div onClick={() => setShowMore(false)} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,.5)", backdropFilter: "blur(4px)", zIndex: 60 }}>
+            <div onClick={e => e.stopPropagation()} style={{ position: "absolute", bottom: 76, left: 16, right: 16, background: "#fff", borderRadius: 16, padding: "16px 14px", boxShadow: "0 8px 32px rgba(0,0,0,.15)", border: `1px solid ${T.border}` }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0 6px 10px" }}>
+                <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, color: T.text }}>More</span>
                 <button onClick={() => setShowMore(false)} aria-label="Close menu" style={{ padding: 4, borderRadius: 6, border: "none", background: "transparent", cursor: "pointer" }}><X size={18} color={T.textMuted} /></button>
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
                 {moreItems.map(item => {
                   const active = page === item.id;
                   return (
-                    <button key={item.id} onClick={() => { setPage(item.id); setShowMore(false); }} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, padding: "14px 8px", borderRadius: 10, border: "none", cursor: "pointer", background: active ? T.accentGhost : T.bgDim, color: active ? T.accent : T.textMuted }}>
-                      <item.icon size={22} />
-                      <span style={{ fontSize: 13, fontWeight: 600 }}>{item.label}</span>
+                    <button key={item.id} onClick={() => { setPage(item.id); setShowMore(false); }} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, padding: "18px 8px", borderRadius: 12, border: `1px solid ${active ? T.accentBorder : T.border}`, cursor: "pointer", background: active ? T.accentGhost : "#fff", color: active ? T.accent : T.text }}>
+                      <item.icon size={24} />
+                      <span style={{ fontSize: 14, fontWeight: 600 }}>{item.label}</span>
                     </button>
                   );
                 })}
@@ -1494,20 +1576,13 @@ export default function App() {
         )}
 
         {/* Bottom Nav */}
-        <nav style={{ flexShrink: 0, zIndex: 30, background: T.bgCard, borderTop: `1px solid ${T.border}` }}>
-          <div style={{ display: "flex", justifyContent: "space-around", padding: "6px 4px 10px" }}>
+        <nav style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 60, zIndex: 50, background: "#fff", borderTop: "1px solid #eee", display: "flex", alignItems: "center" }}>
+          <div style={{ display: "flex", justifyContent: "space-around", width: "100%", padding: "0 4px" }}>
             {mainTabs.map(tab => {
               const active = tab.id === "more" ? (isMoreActive || showMore) : page === tab.id;
-              if (tab.id === "more") {
-                return (
-                  <button key={tab.id} onClick={() => setShowMore(true)} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, padding: "6px 12px", borderRadius: 10, border: "none", background: "transparent", cursor: "pointer", color: active ? T.accent : T.textFaint }}>
-                    <tab.icon size={20} strokeWidth={active ? 2.5 : 2} />
-                    <span style={{ fontSize: 12, fontWeight: active ? 700 : 500 }}>{tab.label}</span>
-                  </button>
-                );
-              }
+              const onClick = tab.id === "more" ? () => setShowMore(true) : () => setPage(tab.id);
               return (
-                <button key={tab.id} onClick={() => setPage(tab.id)} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, padding: "6px 12px", borderRadius: 10, border: "none", background: "transparent", cursor: "pointer", color: active ? T.accent : T.textFaint }}>
+                <button key={tab.id} onClick={onClick} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, padding: "6px 10px", borderRadius: 10, border: "none", background: "transparent", cursor: "pointer", color: active ? T.accent : T.textFaint }}>
                   <tab.icon size={20} strokeWidth={active ? 2.5 : 2} />
                   <span style={{ fontSize: 12, fontWeight: active ? 700 : 500 }}>{tab.label}</span>
                 </button>
@@ -1520,8 +1595,11 @@ export default function App() {
         {showSettings && <SettingsModal onClose={() => setShowSettings(false)} />}
         {showNotifications && <NotificationsModal onClose={() => setShowNotifications(false)} />}
         {reservationClass && <ReservationModal classData={reservationClass} onConfirm={registerForClass} onClose={() => setReservationClass(null)} />}
+
+        <style>{`
+          div::-webkit-scrollbar { display: none; }
+        `}</style>
       </div>
-      </DemoWrapper>
     </AppContext.Provider>
   );
 }
